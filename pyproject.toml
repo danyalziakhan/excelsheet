@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "excelsheet"
+version = "0.1.0"
+description = "Unified API to read/save Excel sheet files (.xlsx, .xls, etc.) using multiple backends (pandas, openpyxl, pywin32, etc.)."
+authors = ["Danyal Zia Khan <danyal6870@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Other Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+pandas = "^1.4.2"
+openpyxl = "^3.0.9"
+pywin32 = "^303"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+ipython = "^8.2.0"
+ipykernel = "^6.10.0"
+isort = "^5.10.1"
+pre-commit = "^2.18.1"
+
+[tool.black]
+line-length = 88
+target_version = ['py310']
+include = '\.py$'
+
+[tool.isort]
+profile = "black"
+line_length=88                 # corresponds to -w  flag
+multi_line_output=3            # corresponds to -m  flag
+include_trailing_comma=true    # corresponds to -tc flag
+skip_glob = ".venv, */build, */.git"
+float_to_top = true
+
+[tool.pyright]
+include = ["."]
+exclude = ["**/node_modules", "**/__pycache__", "**/.venv"]
+venv = ".venv"
+stubPath = "stubs"
+
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportUnknownParameterType = "warning"
+reportUnknownMemberType = false
+reportUnknownVariableType = "warning"
+reportUnknownArgumentType = true
+reportPrivateUsage = true
+reportUntypedFunctionDecorator = false
+reportImportCycles = true
+reportUnusedImport = "warning"
+reportUnknownLambdaType = false
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
