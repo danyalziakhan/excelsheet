@@ -22,49 +22,25 @@
 
 from __future__ import annotations
 
-from functools import cache
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from typing import Any
 
-# ? https://stackoverflow.com/questions/39952931/win32-python-to-get-all-column-names-from-excel
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    import pandas as pd
 
 
-@cache
-def col_row_to_excel(row: int, col: int):
-    """Convert given row and column number to an Excel-style cell name."""
-    result: list[Any] = []
-    while col:
-        col, rem = divmod(col - 1, 26)
-        result[:0] = LETTERS[rem]
-    return "".join(result) + str(row)
-
-
-@cache
-def col_to_excel(col: int):  # col is 1 based
-    """Convert given column number to an Excel-style cell name."""
-    excel_col = ""
-    div = col
-    while div:
-        (div, mod) = divmod(div - 1, 26)  # will return (x, 0 .. 25)
-        excel_col = chr(mod + 65) + excel_col
-
-    return excel_col
-
-
-def get_cell_range(alphabet: str, start: int, end: int, end_offset: int = 0):
-    return f"{alphabet}{start}:{alphabet}{end + end_offset}"
-
-
-def rgb_to_hex(rgb: tuple[int, int, int]):
+def remove_existing_rows(
+    df: pd.DataFrame | pd.Series[Any],
+) -> pd.DataFrame | pd.Series[Any]:
     """
-    ws.Cells(1, i).Interior.color uses bgr in hex
+    Delete all the rows so that only columns are present
     """
-    if all(i == 0 for i in rgb):
-        raise ValueError("All RGB values cannot be zero")
+    return df.drop(df.index.to_list(), axis="index").reset_index(drop=True)  # type: ignore
 
-    bgr = (rgb[2], rgb[1], rgb[0])
-    strValue = "%02x%02x%02x" % bgr
-    return int(strValue, 16)
+
+def put_last_column_to_first(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Reorder the columns of a DataFrame
+    """
+    return df[[df.columns[-1]] + [col for col in df.columns if col != df.columns[-1]]]  # type: ignore

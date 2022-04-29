@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "excelsheet"
-version = "0.1.1"
+version = "0.1.2"
 description = "Unified API to read/save Excel sheet files (.xlsx, .xls, etc.) using multiple backends (pandas, openpyxl, pywin32, etc.)."
 authors = ["Danyal Zia Khan <danyal6870@gmail.com>"]
 license = "MIT License"
@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10"
+python = ">=3.10,<3.11"
 pandas = "^1.4.2"
 openpyxl = "^3.0.9"
 pywin32 = "^303"
