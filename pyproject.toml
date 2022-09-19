@@ -13,22 +13,23 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
-pandas = "^1.4.2"
-openpyxl = "^3.0.9"
-pywin32 = "^303"
+python = ">=3.10,<3.12"
+pandas = "^1.4.4"
+openpyxl = "^3.0.10"
+pywin32 = "^304"
 
-[tool.poetry.dev-dependencies]
-black = "^22.3.0"
-ipython = "^8.2.0"
-ipykernel = "^6.10.0"
+[tool.poetry.group.dev.dependencies]
+black = "^22.8.0"
+ipykernel = "^6.15.3"
+ipython = "^8.5.0"
 isort = "^5.10.1"
-pre-commit = "^2.18.1"
+pre-commit = "^2.20.0"
 
 [tool.black]
 line-length = 88
