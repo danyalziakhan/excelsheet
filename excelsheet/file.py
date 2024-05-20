@@ -38,7 +38,8 @@ if platform.system() == "Windows":
 
 
 if TYPE_CHECKING:
-    from typing import Any, Sequence
+    from collections.abc import Sequence
+    from typing import Any
 
     from openpyxl.worksheet.worksheet import Worksheet
 
@@ -121,7 +122,7 @@ def write_to_excel_template_cell_win32(
 
 
 def write_to_cell_openpyxl(worksheet: Worksheet, values: Sequence[str], range_fmt: str):
-    for cell, value in zip(worksheet[range_fmt], values):
+    for cell, value in zip(worksheet[range_fmt], values):  # type: ignore
         cell[0].value = value
 
 
