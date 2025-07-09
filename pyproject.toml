@@ -1,10 +1,11 @@
-[tool.poetry]
+[project]
 name = "excelsheet"
 version = "0.1.2"
 description = "Unified API to read/save Excel sheet files (.xlsx, .xls, etc.) using multiple backends (pandas, openpyxl, pywin32, etc.)."
-authors = ["Danyal Zia Khan <danyal6870@gmail.com>"]
-license = "MIT License"
+authors = [{ name = "Danyal Zia Khan", email = "danyal6870@gmail.com" }]
+requires-python = ">=3.10,<3.13"
 readme = "README.md"
+license = "MIT"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Other Environment",
@@ -18,30 +19,31 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+dependencies = ["pandas>=2.2.2,<3", "openpyxl>=3.1.2,<4", "pywin32>=306,<307"]
 
-[tool.poetry.dependencies]
-python = ">=3.10,<3.13"
-pandas = "^2.2.2"
-openpyxl = "^3.1.2"
-pywin32 = "^306"
+[dependency-groups]
+dev = [
+    "black>=24.4.2,<25",
+    "ipykernel>=6.29.4,<7",
+    "ipython>=8.24.0,<9",
+    "isort>=5.13.2,<6",
+    "pre-commit>=3.7.1,<4",
+]
 
-[tool.poetry.group.dev.dependencies]
-black = "^24.4.2"
-ipykernel = "^6.29.4"
-ipython = "^8.24.0"
-isort = "^5.13.2"
-pre-commit = "^3.7.1"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.black]
 line-length = 88
-target-version = ['py312']
 include = '\.py$'
+target-version = ["py310", "py311", "py312", "py313"]
 
 [tool.isort]
 profile = "black"
-line_length=88                 # corresponds to -w  flag
-multi_line_output=3            # corresponds to -m  flag
-include_trailing_comma=true    # corresponds to -tc flag
+line_length = 88                     # corresponds to -w  flag
+multi_line_output = 3                # corresponds to -m  flag
+include_trailing_comma = true        # corresponds to -tc flag
 skip_glob = ".venv, */build, */.git"
 float_to_top = true
 
@@ -61,7 +63,3 @@ reportUntypedFunctionDecorator = false
 reportImportCycles = true
 reportUnusedImport = "warning"
 reportUnknownLambdaType = false
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
