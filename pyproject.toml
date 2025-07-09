@@ -6,6 +6,7 @@ authors = [{ name = "Danyal Zia Khan", email = "danyalziakhan@gmail.com" }]
 requires-python = ">=3.10,<3.14"
 readme = "README.md"
 license = "MIT"
+
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Other Environment",
@@ -21,6 +22,9 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = ["pandas>=2.2.2,<3", "openpyxl>=3.1.2,<4", "pywin32>=306"]
+
+[project.urls]
+homepage = "https://github.com/danyalziakhan/excelsheet"
 
 [dependency-groups]
 dev = [
